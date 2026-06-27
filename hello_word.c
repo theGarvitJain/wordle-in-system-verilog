@@ -56,7 +56,7 @@ int main()
     XGpio_SetDataDirection(&game_status, 1, 0x01);
 
     // Declare variables
-    char user_guess[4];
+    char user_guess[8]; // Accounts for the null byte
     int user_guess_int;
     int ready_value = 0;
     int game_status_value = 0;
@@ -80,7 +80,7 @@ int main()
 
             // Accept user guess word, convert it to 32-bit value, and write it to Wordle FSM
             xil_printf("Enter guess: ");
-            scanf("%s", &user_guess);
+            scanf("%4s", &user_guess);
             user_guess_int = 0;
             for (int i = 0; i < 4; i++) {
                 user_guess[i] = tolower(user_guess[i]);
